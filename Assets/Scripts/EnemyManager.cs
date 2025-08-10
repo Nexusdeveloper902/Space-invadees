@@ -23,7 +23,7 @@ public class EnemyManager : MonoBehaviour
                 yield break;
             }
             GameObject randomEnemy =  enemiesArray[Random.Range(0, enemiesArray.Length)];
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             randomEnemy.GetComponent<Enemy>().Shoot();
         }
     }

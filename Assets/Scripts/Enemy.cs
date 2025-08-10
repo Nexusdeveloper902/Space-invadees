@@ -35,6 +35,6 @@ public class Enemy : MonoBehaviour
         var bulletScript = bullet.GetComponent<Bullet>();
         bulletScript.Initialize(bulletSpeed, false);
         
-        Destroy(bullet, bulletDespawnTime);
+        Destroy(bullet, bulletDespawnTime + 5f);
     }
 }
