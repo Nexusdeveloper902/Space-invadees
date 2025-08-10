@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class EnemyManager : MonoBehaviour
         while (true)
         {
             enemiesArray = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemiesArray.Length == 0)
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
             GameObject randomEnemy =  enemiesArray[Random.Range(0, enemiesArray.Length)];
             yield return new WaitForSeconds(1f);
             randomEnemy.GetComponent<Enemy>().Shoot();

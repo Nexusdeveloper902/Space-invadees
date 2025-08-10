@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(lives);
         movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
         transform.position += movement * speed * Time.deltaTime;
 
