@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,17 +12,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletDespawnTime = 3f;
     
+    public int lives = 3;
+    
     private Vector3 movement;
     private float timer;
     
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        Debug.Log(lives);
         movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
         transform.position += movement * speed * Time.deltaTime;
 
@@ -36,8 +34,20 @@ public class Player : MonoBehaviour
     {
         var bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
         var bulletScript = bullet.GetComponent<Bullet>();
-        bulletScript.Initialize(bulletSpeed);
+        bulletScript.Initialize(bulletSpeed, true);
         
         Destroy(bullet, bulletDespawnTime);
+    }
+
+    public void Die()
+    {
+        if (lives > 1)
+        {
+            lives--;
+        }
+        else
+        {
+            SceneManager.LoadScene("Scenes/SampleScene");
+        }
     }
 }
