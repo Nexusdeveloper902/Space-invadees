@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        var bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity * Quaternion.Euler(0, 0, 180));
+        var bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
         var bulletScript = bullet.GetComponent<Bullet>();
         bulletScript.Initialize(bulletSpeed);
         

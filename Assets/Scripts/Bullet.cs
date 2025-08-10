@@ -16,4 +16,13 @@ public class Bullet : MonoBehaviour
     {
         transform.position += new Vector3(0, bulletSpeed, 0) *  Time.deltaTime;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.GetComponent<Enemy>().Die();
+            Destroy(gameObject);
+        }
+    }
 }
