@@ -19,10 +19,11 @@ public class EnemyManager : MonoBehaviour
             enemiesArray = GameObject.FindGameObjectsWithTag("Enemy");
             if (enemiesArray.Length == 0)
             {
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("WinMenu");
+                yield break;
             }
             GameObject randomEnemy =  enemiesArray[Random.Range(0, enemiesArray.Length)];
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             randomEnemy.GetComponent<Enemy>().Shoot();
         }
     }

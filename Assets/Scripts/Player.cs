@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Scenes/SampleScene");
+            SceneManager.LoadScene("ResetMenu");
         }
     }
 }
