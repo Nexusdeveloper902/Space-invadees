@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private Sprite explosion;
     private float bulletSpeed;
     private bool shootByPlayer;
+    private bool atBunker = false;
 
     public void Initialize(float bulletSpeed, bool shootByPlayer)
     {
@@ -21,11 +23,11 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        if (shootByPlayer)
+        if (shootByPlayer && !atBunker)
         {
             transform.position += new Vector3(0, bulletSpeed, 0) *  Time.deltaTime;
         }
-        else
+        else if (!atBunker)
         {
             transform.position -= new Vector3(0, bulletSpeed, 0) *  Time.deltaTime;
         }
@@ -42,6 +44,14 @@ public class Bullet : MonoBehaviour
         {
             other.GetComponent<Player>().Die();
             Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("Bunker"))
+        {
+            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = explosion;
+            atBunker = true;
+            other.GetComponent<Bunker>().TakeDamage();
+            Destroy(gameObject, 0.5f);
         }
     }
 }
