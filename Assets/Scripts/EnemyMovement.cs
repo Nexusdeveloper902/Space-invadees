@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     }   
     IEnumerator Movement()
     {
-        float moveSpeed = 0.2f;        // Horizontal step size
+        float moveSpeed = 0.1f;        // Horizontal step size
         float stepDown = 0.5f;         // Vertical step size
         int direction = 1;             // 1 = right, -1 = left
         float baseDelay = 0.5f;        // Slowest delay

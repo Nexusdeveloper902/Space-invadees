@@ -17,14 +17,21 @@ public class EnemyManager : MonoBehaviour
         while (true)
         {
             enemiesArray = GameObject.FindGameObjectsWithTag("Enemy");
+
             if (enemiesArray.Length == 0)
             {
                 SceneManager.LoadScene("WinMenu");
                 yield break;
             }
-            GameObject randomEnemy =  enemiesArray[Random.Range(0, enemiesArray.Length)];
+
+            GameObject randomEnemy = enemiesArray[Random.Range(0, enemiesArray.Length)];
+
             yield return new WaitForSeconds(1f);
-            randomEnemy.GetComponent<Enemy>().Shoot();
+
+            if (randomEnemy != null) // still alive?
+            {
+                randomEnemy.GetComponent<Enemy>().Shoot();
+            }
         }
     }
 }
